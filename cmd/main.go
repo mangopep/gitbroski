@@ -20,5 +20,6 @@ func main() {
 		logger.Text("Command not found: " + cmd)
 		return
 	}
-	handler()
+	handler(os.Args[2:]...)
+
 }
