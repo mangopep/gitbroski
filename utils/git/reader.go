@@ -7,14 +7,7 @@ import (
 )
 
 func GetRemoteURL() string {
-	// Getting the root of the git repository
-	rootCmd := exec.Command("git", "rev-parse", "--show-toplevel")
-	rootOut, err := rootCmd.Output()
-	if err != nil {
-		logger.Error("Not inside a git repository")
-		return ""
-	}
-	repoRoot := strings.TrimSpace(string(rootOut))
+	repoRoot := GetRoot()
 
 	// Getting remote URL from the repo root
 	remoteCmd := exec.Command("git", "-C", repoRoot, "config", "--get", "remote.origin.url")

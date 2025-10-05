@@ -12,7 +12,8 @@ func Banner(text string) {
 }
 
 func Text(text string) {
-	c := color.New(color.FgHiWhite)
+	c := color.New()
+	c.AddRGB(135, 206, 250)
 	c.Println(text)
 }
 
