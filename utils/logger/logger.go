@@ -21,3 +21,13 @@ func Error(text string) {
 	c := color.New(color.FgHiRed)
 	c.Println(text)
 }
+
+func Success(text string) {
+	c := color.New(color.FgHiGreen)
+	c.Println(text)
+}
+
+func Warning(text string) {
+	c := color.New(color.FgHiYellow)
+	c.Println(text)
+}
