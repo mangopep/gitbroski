@@ -1,5 +1,7 @@
 # Git-Broski 
 
+https://gratis-neon-644.notion.site/GitBroski-Broski-for-your-Github-Workflow-286e41747653800a9cc4f7b014c6cf51
+
 **Broski for your Git!**  
 A CLI tool to perform various manual tasks with single commands
 
