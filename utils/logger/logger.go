@@ -1,3 +1,4 @@
+// Package logger provides colorized console output utilities.
 package logger
 
 import (
@@ -8,16 +9,16 @@ import (
 func Banner(text string) {
 	myFigure := figure.NewFigure(text, "slant", true)
 	c := color.New(color.FgHiMagenta)
-	c.Println(myFigure.String())
+	_, _ = c.Println(myFigure.String())
 }
 
 func Text(text string) {
 	c := color.New()
 	c.AddRGB(135, 206, 250)
-	c.Println(text)
+	_, _ = c.Println(text)
 }
 
 func Error(text string) {
 	c := color.New(color.FgHiRed)
-	c.Println(text)
+	_, _ = c.Println(text)
 }

@@ -10,7 +10,7 @@ func init() {
 	Register("open", Open)
 }
 
-func Open(args ...string) {
+func Open(_ ...string) {
 	logger.Text("Open command executed")
 	url := git.GetRemoteURL()
 	if url == "" {

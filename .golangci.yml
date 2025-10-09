@@ -1,0 +1,176 @@
+# golangci-lint configuration v2
+# For more information see: https://golangci-lint.run/docs/usage/configuration/
+
+version: "2"
+
+linters:
+  enable:
+    # Enabled by default linters:
+    - errcheck # Checks for unchecked errors
+    - govet # Reports suspicious constructs
+    - ineffassign # Detects unused assignments
+    - staticcheck # Go static analysis
+    - unused # Checks for unused constants, variables, functions and types
+
+    # Additional recommended linters:
+    - bodyclose # Checks whether HTTP response body is closed
+    - misspell # Finds commonly misspelled English words
+    - revive # Fast, configurable, extensible, flexible, and beautiful linter for Go
+    - gocritic # Provides diagnostics that check for bugs, performance and style issues
+    - gosec # Inspects source code for security problems
+    - unconvert # Remove unnecessary type conversions
+    - unparam # Reports unused function parameters
+    - gocyclo # Computes and checks the cyclomatic complexity of functions
+    - dupl # Tool for code clone detection
+    - prealloc # Finds slice declarations that could potentially be pre-allocated
+
+  settings:
+    errcheck:
+      check-type-assertions: true
+      check-blank: false
+
+    govet:
+      enable-all: true
+
+    misspell:
+      locale: US
+
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
+
+      disabled-checks:
+        - whyNoLint
+
+    revive:
+      severity: warning
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: dot-imports
+        - name: error-return
+        - name: error-strings
+        - name: error-naming
+        - name: if-return
+        - name: increment-decrement
+        - name: var-naming
+        - name: var-declaration
+        - name: package-comments # Keep: requires package-level comments
+        - name: range
+        - name: receiver-naming
+        - name: time-naming
+        - name: unexported-return
+        - name: indent-error-flow
+        - name: errorf
+        - name: empty-block
+        - name: superfluous-else
+        - name: unused-parameter
+        - name: unreachable-code
+        - name: redefines-builtin-id
+
+    staticcheck:
+      # Disable ST1000 except for package comments (handled by revive)
+      checks: ["all", "-ST1000"]
+
+formatters:
+  enable:
+    - gofmt # Formats code
+    - goimports # Formats import statements
+
+issues:
+  # Maximum issues count per one linter.
+  # Set to 0 to disable.
+  # Default: 50
+  max-issues-per-linter: 0
+
+  # Maximum count of issues with the same text.
+  # Set to 0 to disable.
+  # Default: 3
+  max-same-issues: 0
+
+  # Make issues output unique by line.
+  # Default: true
+  uniq-by-line: false
+
+  # Show only new issues: if there are unstaged changes or untracked files,
+  # only those changes are analyzed, else only changes in HEAD~ are analyzed.
+  # It's a super-useful option for integration of golangci-lint into existing large codebase.
+  # It's not practical to fix all existing issues at the moment of integration:
+  # much better don't allow issues in new code.
+  # Default: false
+  new: false
+
+  # Show only new issues created after the best common ancestor (merge-base against HEAD).
+  # Default: ""
+  new-from-merge-base: ""
+
+  # Show only new issues created after git revision `REV`.
+  # Default: ""
+  new-from-rev: ""
+
+  # Show only new issues created in git patch with set file path.
+  # Default: ""
+  new-from-patch: ""
+
+  # Show issues in any part of update files (requires new-from-rev or new-from-patch).
+  # Default: false
+  whole-files: false
+
+  # Fix found issues (if it's supported by the linter).
+  # Default: false
+  fix: false
+
+# Output configuration options.
+output:
+  # The formats used to render issues.
+  formats:
+    # Prints issues in a text format with colors, line number, and linter name.
+    # This format is the default format.
+    text:
+      # Output path can be either `stdout`, `stderr` or path to the file to write to.
+      # Default: stdout
+      path: stdout
+      # Print linter name in the end of issue text.
+      # Default: true
+      print-linter-name: true
+      # Print lines of code with issue.
+      # Default: true
+      print-issued-lines: true
+      # Use colors.
+      # Default: true
+      colors: true
+
+  # Add a prefix to the output file references.
+  # This option is ignored when using `output.path-mode: abs` mode.
+  # Default: ""
+  path-prefix: ""
+
+  # By default, the report are related to the path obtained by `run.relative-path-mode`.
+  # The mode `abs` allows to show absolute file paths instead of relative file paths.
+  # The option `output.path-prefix` is ignored when using `abs` mode.
+  # Default: ""
+  path-mode: ""
+
+  # Order to use when sorting results.
+  # Possible values: `file`, `linter`, and `severity`.
+  # Default: ["linter", "file"]
+  sort-order:
+    - linter
+    - severity
+    - file
+
+  # Show statistics per linter.
+  # Default: true
+  show-stats: true
+
+# Options for analysis running.
+run:
+  timeout: 5m
+  tests: true
+  allow-parallel-runners: true
+
+severity:
+  default: error
