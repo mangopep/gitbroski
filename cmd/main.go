@@ -1,3 +1,4 @@
+// Package main is the entry point for the gitbroski CLI application.
 package main
 
 import (
@@ -14,7 +15,7 @@ func main() {
 	}
 
 	cmd := os.Args[1]
-	handler, exists := commands.Registery[cmd]
+	handler, exists := commands.Registry[cmd]
 
 	if !exists {
 		logger.Text("Command not found: " + cmd)

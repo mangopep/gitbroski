@@ -1,3 +1,4 @@
+// Package ignore provides language-specific .gitignore templates.
 package ignore
 
 func Python() string {

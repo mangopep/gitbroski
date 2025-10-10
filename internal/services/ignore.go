@@ -1,3 +1,4 @@
+// Package services provides core business logic services.
 package services
 
 import (
@@ -19,7 +20,7 @@ func Ignore(lang string) {
 	switch lang {
 	case "python":
 		pythonIgnoreTemplate := ignore.Python()
-		err := os.WriteFile(gitignorePath, []byte(pythonIgnoreTemplate), 0644)
+		err := os.WriteFile(gitignorePath, []byte(pythonIgnoreTemplate), 0o600)
 		if err != nil {
 			logger.Error("Error writing .gitignore: " + err.Error())
 			return
@@ -34,7 +35,7 @@ func Ignore(lang string) {
 		}
 		logger.Success("Node.js .gitignore successfully created at " + gitignorePath)
 	default:
-		err := os.WriteFile(gitignorePath, []byte{}, 0644)
+		err := os.WriteFile(gitignorePath, []byte{}, 0o600)
 		if err != nil {
 			logger.Error("Error creating empty .gitignore: " + err.Error())
 			return

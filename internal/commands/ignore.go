@@ -1,3 +1,4 @@
+// Package commands provides CLI command handlers.
 package commands
 
 import (
